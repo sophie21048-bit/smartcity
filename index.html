@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Доступный путь — оценка доступности пеших маршрутов</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23b3184f'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html">Доступный <span>путь</span></a>
+    <ul class="nav-links">
+      <li><a href="#how">Как это работает</a></li>
+      <li><a href="#categories">Категории пользователей</a></li>
+      <li><a href="#obstacles">Препятствия</a></li>
+      <li><a href="#about">О проекте</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="btn btn-ghost" href="login.html">Войти</a>
+      <a class="btn btn-primary" href="register.html">Регистрация</a>
+    </div>
+    <button class="nav-toggle" aria-label="Открыть меню"><span></span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-content">
+      <div class="hero-kicker">Школьный проект по анализу городской среды</div>
+      <h1>Маршрут, который учитывает, кто по нему пойдёт</h1>
+      <p class="lead">Сервис строит пеший маршрут между двумя точками и оценивает, насколько он удобен именно для вас — с учётом бордюров, лестниц, уклонов и других особенностей дороги, которые не видны на обычной карте.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="register.html">Создать аккаунт</a>
+        <a class="btn btn-ghost" href="#how">Посмотреть, как это работает</a>
+      </div>
+    </div>
+    <figure class="route-figure">
+      <svg viewBox="0 0 560 320" role="img" aria-labelledby="routeTitle">
+        <title id="routeTitle">Схема маршрута с отмеченными препятствиями</title>
+        <polyline points="40,270 120,230 160,150 260,170 300,90 400,110 460,60 520,40"
+          fill="none" stroke="#e7c3ce" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round" />
+        <circle cx="40" cy="270" r="9" fill="#2a1420" />
+        <text x="40" y="295" text-anchor="middle" font-family="Manrope, sans-serif" font-size="13" fill="#2a1420">А</text>
+        <circle cx="160" cy="150" r="8" fill="#b3184f" />
+        <circle cx="300" cy="90" r="8" fill="#7a1030" />
+        <circle cx="400" cy="110" r="8" fill="#d97b9a" />
+        <circle cx="520" cy="40" r="9" fill="#2a1420" />
+        <text x="520" y="24" text-anchor="middle" font-family="Manrope, sans-serif" font-size="13" fill="#2a1420">Б</text>
+      </svg>
+      <figcaption>Так модель размечает маршрут: точки старта и финиша, и три уровня сложности препятствий по пути.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Как устроен сервис</h2>
+      <p>От запроса до готовой оценки маршрута — четыре шага.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-index">1</span>
+        <h3>Регистрация</h3>
+        <p>Вы создаёте аккаунт и указываете категорию передвижения — её можно будет изменить перед любым запросом.</p>
+      </div>
+      <div class="step">
+        <span class="step-index">2</span>
+        <h3>Точки маршрута</h3>
+        <p>Указываете, откуда и куда нужно попасть пешком, — в пределах города, для которого обучена модель.</p>
+      </div>
+      <div class="step">
+        <span class="step-index">3</span>
+        <h3>Анализ дороги</h3>
+        <p>Модель разбирает маршрут на отрезки и ищет неровности, перепады высоты, бордюры и другие особенности покрытия.</p>
+      </div>
+      <div class="step">
+        <span class="step-index">4</span>
+        <h3>Оценка и метки</h3>
+        <p>Вы получаете время в пути, общую сложность и список конкретных мест, требующих внимания.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="categories">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Категории пользователей</h2>
+      <p>Одна и та же дорога может быть лёгкой для одного человека и труднопроходимой для другого. Модель пересчитывает сложность отдельно для каждой категории.</p>
+    </div>
+    <div class="category-list">
+      <div class="category-row">
+        <div class="category-tab" style="background:#2a1420"></div>
+        <h3>Обычный пешеход</h3>
+        <p>Базовый маршрут без дополнительных ограничений. Учитываются только серьёзные препятствия — открытые стройки, отсутствие тротуара, аварийные участки.</p>
+      </div>
+      <div class="category-row">
+        <div class="category-tab" style="background:#b3184f"></div>
+        <h3>Ребёнок</h3>
+        <p>Модель понижает оценку участков с интенсивным автомобильным движением, нерегулируемыми переходами и длинными безлюдными отрезками пути.</p>
+      </div>
+      <div class="category-row">
+        <div class="category-tab" style="background:#7a1030"></div>
+        <h3>Человек на инвалидной коляске</h3>
+        <p>Ключевую роль играют бордюры без пандуса, лестницы без альтернативного заезда, уклон покрытия и ширина тротуара.</p>
+      </div>
+      <div class="category-row">
+        <div class="category-tab" style="background:#d97b9a"></div>
+        <h3>Человек с нарушением зрения</h3>
+        <p>Модель отмечает отсутствие тактильной плитки, нерегулируемые переходы и препятствия на уровне тротуара — открытые люки, столбы, низкие ветки.</p>
+      </div>
+      <div class="category-row">
+        <div class="category-tab" style="background:#6b4a56"></div>
+        <h3>Пожилой человек</h3>
+        <p>Приоритет отдаётся ровному покрытию, наличию мест для отдыха по пути и умеренному количеству лестниц и крутых подъёмов.</p>
+      </div>
+      <div class="category-row">
+        <div class="category-tab" style="background:#c98aa0"></div>
+        <h3>Родитель с коляской</h3>
+        <p>Учитываются те же факторы, что и для инвалидной коляски, а также наличие пандусов у входов в переходы и подземные переходы без лифта.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="obstacles">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Что именно ищет модель на маршруте</h2>
+      <p>Данные размечаются по трём уровням значимости — от заметного неудобства до серьёзного препятствия.</p>
+    </div>
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-dot hazard-low"></div>
+        <h3>Незначительно</h3>
+        <p>Небольшая выбоина, узкий участок тротуара, короткий отрезок без разметки перехода.</p>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot hazard-mid"></div>
+        <h3>Ощутимо</h3>
+        <p>Бордюр без пандуса, отсутствие тактильной плитки, участок с плохим освещением в тёмное время суток.</p>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot hazard-high"></div>
+        <h3>Существенно</h3>
+        <p>Лестница без пандуса, крутой уклон, разрытый участок дороги, отсутствие тротуара на протяжённом отрезке.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>О проекте</h2>
+      <p>Разработка ведётся как учебный проект, посвящённый интеллектуальной модели оценки доступности городской среды.</p>
+    </div>
+    <div class="about-grid">
+      <dl>
+        <dt>Источник данных</dt>
+        <dd>Модель обучается на снимках и данных Яндекс.Карт — разметка неровностей, бордюров и покрытия выполняется вручную для обучающей выборки.</dd>
+        <dt>Что оценивается</dt>
+        <dd>Протяжённость маршрута, ориентировочное время в пути и перечень участков, которые могут затруднить перемещение конкретной категории пользователей.</dd>
+      </dl>
+      <dl>
+        <dt>Текущий статус</dt>
+        <dd>Сайт демонстрирует пользовательский сценарий: регистрацию, запрос маршрута и вид итогового отчёта. Модель анализа дорабатывается отдельно.</dd>
+        <dt>Дальнейшие шаги</dt>
+        <dd>Расширение обучающей выборки на новые районы города и добавление предложений по объезду отмеченных препятствий.</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>Доступный путь — учебный проект по оценке доступности городской среды.</div>
+    <div>Данные маршрутов основаны на Яндекс.Картах</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
